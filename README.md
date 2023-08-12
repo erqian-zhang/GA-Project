@@ -1,28 +1,6 @@
-# Project: Online Store
+# Getting Started with Create React App
 
-A online e-commerce store with Shopping Cart
-
-## Feature - Shopping Cart
-
-## Feature - Check Out
-
-## Feature - Customer Login
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

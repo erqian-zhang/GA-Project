@@ -17,12 +17,13 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header></Header>
-        <NavBar></NavBar>
+
         <SalesBanner/>
 
         <Routes>
           <Route path ='/' element = {<Home />} />
-          <Route path ='/:itemID' element = {<ItemPage />} />
+          <Route path ='/:cate' element = {<Home />} /> 
+            <Route path ='/:cate/:itemID' element = {<ItemPage />} />
           <Route path ='/myCart' element = {<MyCart />} />
         </Routes>
         

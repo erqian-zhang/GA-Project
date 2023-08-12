@@ -1,5 +1,6 @@
 .item__page{
   display: flex;
+  width: 80%;
 }
 
 .item__page__gallary{
@@ -12,4 +13,11 @@
 
 .item__page__addCart{
   width: 30%;
+}
+
+.item__page__main{
+  display: flex;
+}
+.item__page__left{
+  width: 20%;
 }

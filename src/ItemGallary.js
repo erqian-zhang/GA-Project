@@ -1,26 +1,33 @@
-import ItemPage from './ItemPage'
+
 import  './ItemGallary.css'
 import fakeproduct from './fakeproduct'
-
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import { useSelector, useDispatch } from 'react-redux';
+import {selectedCategory } from './store/myStoreReducerSlice'
+import { Link } from 'react-router-dom';
 
 
 function ItemGallary (){
 
+
+  const currCategory = useSelector(selectedCategory)
+
+  
+
   return(
-    <div className='total__gallary'>
-      
-          
-      {fakeproduct.map((ppp,index)=>
+    <div className='total__gallary' key = 'gallary'>
+
+      {fakeproduct.filter(aaa=>aaa.category === currCategory || currCategory ==='ALL').map((ppp,index)=>
+      <Link to = {`/${ppp.category}/${ppp.id}`}>
       <div className='product__gallary' key = {index}>
-      
+    
       <img src={ppp.image} alt="" className='product__gallary__iamge'/>
+      
       <p>{ppp.title}</p>
-      <span>${ppp.price}</span> <button>Add to Cart</button>
+      <span>${ppp.price}</span> 
+      <button  >More Details</button>
+
       </div>
+      </Link>
       )}
        
 

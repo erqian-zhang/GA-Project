@@ -1,10 +1,13 @@
-
+import {  useSelector } from "react-redux/es/hooks/useSelector"
+import {selectedCategory } from './store/myStoreReducerSlice' 
+import { Link } from 'react-router-dom';
 
 function NavBar (){
+  const currPath = useSelector(selectedCategory)
 
   return(
     <div>
-      <p>NavBar</p>
+      <Link to ='/'>Home>> </Link><Link>{currPath} </Link>
       
 
 

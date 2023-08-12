@@ -2,7 +2,11 @@ import { useParams } from "react-router-dom"
 import  './ItemPage.css'
 import fakeproduct from "./fakeproduct"
 import NativeSelect from '@mui/material/NativeSelect'
-import { useDebugValue, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import { Link } from 'react-router-dom';
+import {addToCart,numberofDiffProductsinCart,productArrayinCart } from './store/myStoreReducerSlice'
+import { useSelector, useDispatch } from 'react-redux';
+import ItemCatalogue from "./ItemCatalogue"
 
 function ItemPage (product){
 
@@ -10,24 +14,26 @@ function ItemPage (product){
   const [count, setCount] = useState(1)
   const thisitem = fakeproduct.find(ppp => ppp.id == currID.itemID)
 
-  const addCart =()=>{
-    console.log('count is:',count)
-  }
-
-
+  const dispatch = useDispatch()
+  const productlist = useSelector(productArrayinCart)
 
   return(
-    <div>
+    <div className="item__page__main">
+      
+      <div className="item__page__left">
+      <ItemCatalogue />
+      </div>
+
       <div className='item__page' >
         <div className="item__page__gallary">
           <img src={thisitem.image} alt="" className='item__page__gallary'/>
         </div>
-
         <div className="item__page__detail">
           <p>{thisitem.title}</p>
           <p></p>
           <p>{thisitem.description}</p>
           <p></p>
+          <p>{thisitem.category}</p>
           <p>Rating: {thisitem.rating.rate}</p>
           <p>{thisitem.rating.count}</p>
         </div>
@@ -54,15 +60,17 @@ function ItemPage (product){
             <option value={10} >10</option>
            </NativeSelect>}
           <p></p>
-          <button onClick={()=>addCart()}>Add to Cart</button>
+          <button onClick={()=>dispatch(addToCart([thisitem, Number(count)]))}>Add to Cart</button>
+          
           <p></p>
+          <p></p>
+          <Link to = '/MyCart'>
           <button>Check Out Now</button>
+          </Link>
         </div>
-    
       </div>
-
-      
     </div>
+    
   )
 }
 
