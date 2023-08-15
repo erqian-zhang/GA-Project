@@ -39,7 +39,7 @@ function MyCart (){
                         <h3>Price: ${ppp.product.price}</h3> 
                         <h4>You have {ppp.productamount} in the Shopping Cart</h4>
                         <span>Change Quantity to: &nbsp;&nbsp;</span>
-                        {<NativeSelect defaultValue={ppp.productamount}
+                        {<NativeSelect value={ppp.productamount}
                           onChange={(e)=>dispatch(setProductAmount([ppp.product,Number(e.target.value)]))}
                           >
                           
