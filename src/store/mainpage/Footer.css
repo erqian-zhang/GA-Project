@@ -1,0 +1,47 @@
+.footer{
+  background-color: black;
+}
+.footer__row_one{
+  position:relative;
+  height: 50px;
+  align-items: center;
+  color: aliceblue;
+  background-color: rgba(27, 70, 88, 0.674);
+  margin: 0 auto;
+}
+.footer__row_one:hover{
+  background-color: rgba(55, 152, 194, 0.589);
+  cursor: pointer;
+}
+
+.footer__row_one:active{
+  background-color: rgba(63, 174, 222, 0.589);
+  cursor: pointer;
+}
+.footer__back_to_top{
+  font-size:larger;
+  position:absolute;
+   top:20%;
+   left: 45%;
+   
+
+}
+.footer__row_two{
+  width: 80%;
+  height: 50px;
+  justify-content: space-evenly;
+  align-items: center;
+  color: aliceblue;
+  display: flex;
+  margin: 0 auto;
+
+}
+
+
+.footer__link{
+  color:aliceblue
+}
+.footer__link:hover{
+  color:rgb(119, 185, 242)
+}
+
