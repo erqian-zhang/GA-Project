@@ -7,6 +7,8 @@
 - Use Redux to manage global state
 - Use Material UI components for styling
 - Fetch product information from https://dummyjson.com/products using different criteria such as keywords, category, productID .etc
+- Screenshots can be found in the folder /src/resource/screenshot
+- Wireframe can be found in the folder /src/resource/wireframe
 
 ## Further development
 
