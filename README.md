@@ -1,5 +1,5 @@
 # Project Easy Online Ecommerce Store
-    https://erqian-zhang.surge.sh/ 
+    URL: https://erqian-zhang.surge.sh/ 
 ## Key Features:
 
 
@@ -7,5 +7,4 @@
 - Use Redux to manage global state
 - Use Material UI components for styling
 - Fetch product information from https://dummyjson.com/products using different criteria such as keywords, category, productID .etc
-- Screenshots provided in folder /src/resource/screenshot
-- Wireframe provided in folder /src/resource/wireframe
+-
