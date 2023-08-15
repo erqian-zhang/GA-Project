@@ -12,7 +12,7 @@
   justify-content: center;
   overflow-wrap:normal;
   text-align: left;
-font-size: 20px;
+  font-size: 20px;
 
 }
 .product__gallary__rating{
@@ -28,7 +28,12 @@ font-size: 20px;
   width: 300px;
   height: 300px;
 }
-
+.page__page{
+  display: grid;
+}
+.page_here{
+  align-items: center;
+}
 
 
 
