@@ -1,0 +1,20 @@
+.home{
+  display: flex;
+
+}
+
+.home__cateloge{
+
+
+  width:20%;
+
+
+}
+
+.home__gallary{
+
+ 
+  width:80%;
+
+
+}
