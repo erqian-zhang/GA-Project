@@ -4,7 +4,7 @@ import ShopIcon from '@mui/icons-material/Shop';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import { useSelector,useDispatch  } from 'react-redux';
-import {totalNumberOfProducts,setCategory,setSearchProducts,getsearchResults } from '../components/myStoreReducerSlice'
+import {totalNumberOfProducts,setCategory,setSearchProducts,setCurrentExpand } from '../components/myStoreReducerSlice'
 import { useState } from 'react';
 
 function Header (){
@@ -17,7 +17,10 @@ function Header (){
 
   return(
     <div className="Header">
-      <Link to = '/' onClick={()=>dispatch(setCategory('ALL'))}>
+      <Link to = '/' onClick={()=>
+        {dispatch(setCategory('ALL'));
+        dispatch(setCurrentExpand('clear'));}
+        }>
       <div className="header__logo">
         <ShopIcon className='header__logoImage' fontSize='large' 
         />
@@ -27,8 +30,11 @@ function Header (){
 
       <div className="header__search">
         <input type="text" className='header__searchInput ' value={currText} onChange={(e)=>setText(e.target.value)}/>
-        <SearchIcon className='header__searchIcon ' onClick={()=>{dispatch(setSearchProducts(currText));
-          setText('');dispatch(setCategory('ALL'))}}/>
+        <SearchIcon className='header__searchIcon ' onClick={()=>
+        { dispatch(setSearchProducts(currText));
+          setText('');dispatch(setCategory('ALL'));
+          dispatch(setCurrentExpand('clear'));
+        }}/>
       </div>
 
       <div className="header__nav">

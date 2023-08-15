@@ -7,7 +7,8 @@ export const myStoreReducerSlice = createSlice({
   initialState:{
     ShoppingCartProducts: [],
     currentCategory: 'ALL',
-    searchResult: ''
+    searchResult: '',
+    currentExpand: [],
   },
 
   reducers:{
@@ -47,11 +48,19 @@ export const myStoreReducerSlice = createSlice({
 
     setSearchProducts:(state, action) =>{
       state.searchResult = action.payload
+    },
+
+    setCurrentExpand:(state,action)=>{
+      if (action.payload === 'clear'){
+        state.currentExpand = []
+      }else {
+      state.currentExpand = state.currentExpand.concat(action.payload)
+      }
     }
   }
 })
 
-export const {addToCart, removeFromCart,setProductAmount,setCategory,setSearchProducts} = myStoreReducerSlice.actions
+export const {addToCart, removeFromCart,setProductAmount,setCategory,setSearchProducts,setCurrentExpand} = myStoreReducerSlice.actions
 
 export const numberofDiffProductsinCart = (state) =>state.eeeshop.ShoppingCartProducts.length
 export const productArrayinCart = (state) =>state.eeeshop.ShoppingCartProducts
@@ -59,5 +68,6 @@ export const totalNumberOfProducts = (state) => state.eeeshop.ShoppingCartProduc
 export const totalPrice = (state)=>state.eeeshop.ShoppingCartProducts.reduce((b,a)=>b + a.productamount * a.product.price,0)
 export const selectedCategory = (state)=>state.eeeshop.currentCategory
 export const getsearchResults = (state)=>state.eeeshop.searchResult
+export const getCurrentExpand = (state)=>state.eeeshop.currentExpand
 
 export default myStoreReducerSlice.reducer

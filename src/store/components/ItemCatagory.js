@@ -1,58 +1,97 @@
-import React from 'react';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import { useSelector, useDispatch } from 'react-redux';
-import {selectedCategory,setCategory,setSearchProducts } from './myStoreReducerSlice'
-import { useNavigate } from "react-router-dom";
 import  './ItemCatagory.css'
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {setCategory,setSearchProducts,getCurrentExpand,setCurrentExpand } from './myStoreReducerSlice'
+import { useNavigate } from "react-router-dom";
+import TreeView from '@mui/lab/TreeView';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import TreeItem from '@mui/lab/TreeItem';
+
+
+
 
 function ItemCatagory (){
 
-  const cccategory = useSelector(selectedCategory)
   const dispatch = useDispatch()
   const nav = useNavigate()
+  const currExp = useSelector(getCurrentExpand)
+
+  const setID =(id)=>{
+    if (isNaN(id)){
+      nav(`/${id}`)
+      dispatch(setCategory(id))
+      dispatch(setSearchProducts(''))
+    }else {
+      dispatch(setCurrentExpand([id]))
+    }
+  }
+
+  const showALL =()=>{
+    nav('/ALL')
+    dispatch(setCategory('ALL'))
+    dispatch(setCurrentExpand('clear'))
+  }
 
   return(
     <div className='Item__Catagory'>
-      <h2 >Shop by Category</h2>
-      <FormControl>
-      <FormLabel id="demo-radio-buttons-group-label"></FormLabel>
-      <RadioGroup
-        aria-labelledby="demo-radio-buttons-group-label"
-        value= {cccategory}
-        name="radio-buttons-group"
-        onChange={(e,value)=>
-          { nav(`/${value}`);
-            dispatch(setCategory(value));
-            dispatch(setSearchProducts(''))
-          }}
+    
+      <h2 >All Categories</h2>
+      <span className='show__all' onClick={showALL}>Show All Products</span>
+
+      <TreeView className='tree__view'
+        aria-label="multi-select"
+        defaultCollapseIcon={<ExpandMoreIcon />}
+        defaultExpandIcon={<ChevronRightIcon />}
+        onNodeSelect={(e,value)=>{setID(value)}}
+        expanded={currExp}
       >
-       <FormControlLabel value="ALL" control={<Radio />} label="All Products" />
-       <FormControlLabel value="smartphones" control={<Radio />} label="smartphones" />
-       <FormControlLabel value="laptops" control={<Radio />} label="laptops" />
-       <FormControlLabel value="fragrances" control={<Radio />} label="fragrances" />
-       <FormControlLabel value="skincare" control={<Radio />} label="skincare" />
-       <FormControlLabel value="groceries" control={<Radio />} label="groceries" />
-       <FormControlLabel value="home-decoration" control={<Radio />} label="home-decoration" />
-       <FormControlLabel value="furniture" control={<Radio />} label="furniture" />
-       <FormControlLabel value="tops" control={<Radio />} label="tops" />
-       <FormControlLabel value="womens-dresses" control={<Radio />} label="womens-dresses" />
-       <FormControlLabel value="womens-shoes" control={<Radio />} label="womens-shoes" />
-       <FormControlLabel value="mens-shirts" control={<Radio />} label="mens-shirts" />
-       <FormControlLabel value="mens-shoes" control={<Radio />} label="mens-shoes" />
-       <FormControlLabel value="mens-watches" control={<Radio />} label="mens-watches" />
-       <FormControlLabel value="womens-watches" control={<Radio />} label="womens-watches" />
-       <FormControlLabel value="womens-bags" control={<Radio />} label="womens-bags" />
-       <FormControlLabel value="womens-jewellery" control={<Radio />} label="womens-jewellery" />
-       <FormControlLabel value="sunglasses" control={<Radio />} label="sunglasses" />
-       <FormControlLabel value="automotive" control={<Radio />} label="automotive" />
-       <FormControlLabel value="motorcycle" control={<Radio />} label="motorcycle" />
-       <FormControlLabel value="lighting" control={<Radio />} label="lighting" />
-      </RadioGroup>
-      </FormControl>
+        <br />
+        <TreeItem nodeId="1"  label="Home & Garden" >
+          <TreeItem nodeId="furniture" label="Furniture" />
+          <TreeItem nodeId="lighting" label="Lighting" />
+          <TreeItem nodeId="home-decoration" label="Home-decoration" />
+        </TreeItem>
+        
+        <TreeItem nodeId="2" label="Clothing & Accessories">
+          <TreeItem nodeId="3" label="Men's">
+            <TreeItem nodeId="mens-shirts" label="Mens-shirts" />
+            <TreeItem nodeId="mens-shoes" label="Mens-shoes" />
+          </TreeItem>
+
+          <TreeItem nodeId="4" label="Women's">
+            <TreeItem nodeId="tops" label="Womens-tops" />
+            <TreeItem nodeId="womens-dresses" label="Womens-dresses" />
+            <TreeItem nodeId="womens-shoes" label="Womens-shoes" />
+            <TreeItem nodeId="womens-bags" label="Womens-bags" />
+          </TreeItem>
+          <TreeItem nodeId="5" label="Accessories">
+            <TreeItem nodeId="sunglasses" label="Sunglasses" />
+          </TreeItem>
+        </TreeItem>
+
+        <TreeItem nodeId="6" label="Electronics">
+          <TreeItem nodeId="smartphones" label="Smartphones" />
+          <TreeItem nodeId="laptops" label="Laptops" />
+        </TreeItem>
+
+        <TreeItem nodeId="7" label="Jewellery & Watches">
+          <TreeItem nodeId="mens-watches" label="Mens Watches" />
+          <TreeItem nodeId="womens-watches" label="Womens Watches" />
+          <TreeItem nodeId="womens-jewellery" label="Jewellery" />
+        </TreeItem>
+
+        <TreeItem nodeId="8" label="Health & Beauty">
+          <TreeItem nodeId="groceries" label="Groceries" />
+          <TreeItem nodeId="fragrances" label="Fragrances" />
+          <TreeItem nodeId="skincare" label="Skincare" />
+        </TreeItem>
+
+        <TreeItem nodeId="9" label="Motors">
+          <TreeItem nodeId="automotive" label="Automotive" />
+          <TreeItem nodeId="motorcycle" label="Motorcycle" />
+        </TreeItem>
+      </TreeView>
     </div>
   )
 }
