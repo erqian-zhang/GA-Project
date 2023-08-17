@@ -1,5 +1,5 @@
 # Project Easy Online Ecommerce Store
-    https://erqian-zhang.surge.sh/ 
+    https://erqian-zhang.surge.sh/
 ## Key Features:
 
 
